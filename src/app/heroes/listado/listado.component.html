@@ -1,0 +1,33 @@
+<p>Listado de Héroes!</p>
+
+<!--Usando directiva ngIf-->
+<!--Muestra el contenido donde se utilice si esta a true-->
+<div *ngIf="deleteHeroe !=='' ; else noBorrado">
+    <h3>
+        Héroe borrado <span>{{deleteHeroe}}</span>
+    </h3>
+</div>
+
+<!--El ngTemplate que viene de angular permite:
+crear un contenido si su referencia o variable de la directiva se genera
+Para utilizarlo, debemos usar #nombreReferencia-->
+<ng-template #noBorrado>
+    <h3>
+        No he borrado nada
+    </h3>
+</ng-template>
+
+<button (click)="borrarHeroe()">
+    Borrar
+</button>
+
+<ul>
+    <!--Usando directiva ngFor-->
+    <!--Permite duplicar elementos en html-->
+    <li *ngFor="let heroe of heroes; let i=index">
+        {{i + 1}} - {{heroe}} 
+    </li>
+</ul>
+
+
+
