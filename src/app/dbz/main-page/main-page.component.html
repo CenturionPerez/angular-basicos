@@ -1,0 +1,85 @@
+<p>Dragon Ball Z</p>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!--AL USAR EL DECORADOR INPUT
+        Si usamos dentro de nuestro componente <app-personajes [personajes]="personajes">
+        [personajes]="" estaremos indicando que nuestra propiedade del componente va a ser
+        informada por algo, en este caso por un array de otro componente, concretamente
+        el que pertenece ="personajes".
+            [personajes] -> Propiedad del componente externo
+            ="personajes" -> Propiedad del componente actual
+         <app-personajes [personajes]="personajes">
+        -->
+        <app-personajes></app-personajes>
+    </div>
+    <div class="col">
+        <app-agregar [nuevo]="nuevo"></app-agregar>
+        <!--Si queremos recibir algo de otro componente al haber usado @OUTPUT y Emitter
+            En vez de enviarlo con corchetes [nuevo]="nuevo" asi ->
+            (nuevoPersonaje)="agregarNuevoPersonaje($event)"
+            (nuevoPersonaje) -> Propiedad del componente externo que enviamos
+            agregarNuevoPersonaje($event) -> Funcion que recibira con $event el dato
+        -->
+
+        <!--<h3>Agregar <small>{{ nuevo.nombre }}</small></h3>
+        <hr>
+         PASANDO A UNA FUNCION EL EVENTO CON $event
+            -------------------------------------------------W-
+            Si ponemos  <form (submit)="agregar($event)"> ->$event u otrWo nombre detras del dolar,
+            estamos diciendo que recibira la funcion el evento que se ha alterado
+        -->
+        <!-- USANDO UN ngSubmit AL IMPORTAR forModule PARA QUE NO SE REFRESQUE
+            ---------------------------------------------------------------
+            Si ponemos dentro de un form habiendo importado el formModule en el modulo
+            conseguiremos que poniendo <form (ngSubmit)="agregar()"> ngSubmit que no se haga
+            el refresh automaticamente, gracias al evento de ngSubmit
+        -->
+        <!-- USANDO DATOS DEL COMPONENTE EN EL HTML
+            ---------------------------------------------------
+            Si ponemos dentro de una propiedad html el atributo value entre corchetes
+            es dedcir [value] estamos diciendo que queremos poner alguna caracteristica
+            del componente( de la parte donde esta la logica de la clase typeScrip )
+            [value]="nombreCampo de la variable del componente"
+                -> [value]="nuevo.nombre"
+
+            <input 
+                type="text"
+                placeholder="Nombre"
+                [value]="nuevo.nombre"
+                (input)="cambiarNombre( $event )"
+            />
+
+        -->
+        <!-- PODEMOS USAR UN ngModel PARA ESCUCHAR Y EMITIR EL EVENTO DEL HTML
+            -------------------------------------------------------------------
+            Al utilizarlo [(ngModel)]="nuevo.nombre" debemos tambien siempre poner
+            el atributo name="nombre" en el componente html porque
+            a partir del valor que vaya teniniendo, ira actualizando
+            la propiedad que le pusimos al ngModel del componenete de typeScript
+                IMPORTANTE-> ESTO SE LLAMA, TOWAYDATABINDING
+                (tanto emite como recibe eventos o propiedades)
+        
+        <form (ngSubmit)="agregar()">
+            <input 
+                type="text"
+                placeholder="Nombre"
+                name="nombre"
+                [(ngModel)]="nuevo.nombre"
+            />
+            <input
+                type="number"
+                placeholder="Poder"
+                [value]="nuevo.poder"
+                name="poder"
+                [(ngModel)]="nuevo.poder"
+            />
+
+            <button type="submit">
+                Agregar
+            </button>
+        </form>-->
+
+    </div>
+</div>
